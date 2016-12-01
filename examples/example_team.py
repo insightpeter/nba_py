@@ -24,3 +24,10 @@ except AttributeError:
 print('Spurs stats vs Tyson Chandler (2010-11)')
 print('On court:  {}'.format(float(r_on['FG_PCT'])))
 print('Off court: {}'.format(float(r_off['FG_PCT'])))
+
+# print a list of all dallas games in December
+fs = team.FullSchedule().info()
+list_of_games = fs['lscd'][2]['mscd']['g']  # 0=Oct 1=Nov, 2=Dec...
+for game in list_of_games:
+    if game['v']['tc'] == 'Dallas' or game['h']['tc'] == 'Dallas':
+        print(game['gdte'] + ' ' + game['v']['tc'] + ' ' + game['v']['s'] + ' @ ' + str(game['h']['tc']) + ' ' + game['h']['s'])

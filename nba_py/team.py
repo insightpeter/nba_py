@@ -1,4 +1,4 @@
-from nba_py import _api_scrape, _get_json
+from nba_py import _api_scrape, _get_json, _get_schedule
 from nba_py.constants import *
 
 
@@ -559,3 +559,9 @@ class TeamVsPlayer:
 
     def shot_area_off_court(self):
         return _api_scrape(self.json, 8)
+
+
+class FullSchedule:
+    @staticmethod
+    def info():
+        return _get_schedule()
