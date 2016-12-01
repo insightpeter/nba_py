@@ -21,6 +21,7 @@ except ImportError:
 # Constants
 TODAY = datetime.today()
 BASE_URL = 'http://stats.nba.com/stats/{endpoint}'
+SCHEDULE_URL = 'http://data.nba.com/data/10s/v2015/json/mobile_teams/nba/2016/league/00_full_schedule.json'
 HEADERS = {'user-agent': ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) '
                           'AppleWebKit/537.36 (KHTML, like Gecko) '
                           'Chrome/45.0.2454.101 Safari/537.36'),
@@ -81,6 +82,15 @@ def _get_json(endpoint, params, referer='scores'):
     h['referer'] = 'http://stats.nba.com/{ref}/'.format(ref=referer)
     _get = get(BASE_URL.format(endpoint=endpoint), params=params,
                headers=h)
+    # print _get.url
+    _get.raise_for_status()
+    return _get.json()
+
+
+def _get_schedule(referer='schedule'):
+    h = dict(HEADERS)
+    h['referer'] = 'http://stats.nba.com/{ref}/'.format(ref=referer)
+    _get = get(SCHEDULE_URL, headers=h)
     # print _get.url
     _get.raise_for_status()
     return _get.json()
