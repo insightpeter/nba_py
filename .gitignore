@@ -60,3 +60,6 @@ docs/_build/
 
 # PyBuilder
 target/
+.idea/
+examples/injuries.txt
+examples/injury_list.txt
