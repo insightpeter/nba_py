@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from nba_py.constants import League
 import os
 
-HAS_PANDAS = True
+HAS_PANDAS = False
 try:
     from pandas import DataFrame
 except ImportError:
